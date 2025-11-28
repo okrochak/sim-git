@@ -1,0 +1,38 @@
+noSegments = 11
+inOutSegmentsIds = [4, 5, 6, 7, 8, 9, 10]
+
+filename.0 = "stl/skin_debug.stl" 
+filename.1 = "stl/nose_1.stl"
+filename.2 = "stl/nose_2.stl"
+filename.3 = "stl/nose_3.stl"
+filename.4 = "stl/boundary.stl"
+filename.5 = "stl/back.stl"
+filename.6 = "stl/front.stl"
+filename.7 = "stl/left.stl"
+filename.8 = "stl/right.stl"
+filename.9 = "stl/top.stl"
+filename.10 = "stl/bottom.stl"
+
+"body_segments.wall1"     = 0
+"body_segments.wall2"    = 1
+"body_segments.wall3"    = 2
+"body_segments.wall4"    = 3
+"body_segments.outlet1" = 4
+"body_segments.inlet1"  = 5
+"body_segments.inlet2"  = 6
+"body_segments.inlet3"  = 7
+"body_segments.inlet4"  = 8
+"body_segments.inlet5"  = 9
+"body_segments.inlet6"  = 10
+
+BC.0  = 2000
+BC.1  = 2000
+BC.2  = 2000
+BC.3  = 2000
+BC.4  = 1080
+BC.5  = 4000
+BC.6  = 4000
+BC.7  = 4000
+BC.8  = 4000
+BC.9  = 4000
+BC.10  = 4000

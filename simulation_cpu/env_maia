@@ -1,0 +1,4 @@
+#!/bin/bash
+module purge
+module load Stages/2025
+module load GCC/13.3.0 OpenMPI/5.0.5 HDF5/1.14.5 PnetCDF/1.13.0 FFTW.MPI/3.3.10 Boost/1.86.0 Python/3.12.3 CMake/3.29.3

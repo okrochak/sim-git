@@ -1,0 +1,86 @@
+        solverAlias.0             = "fluid"
+        solverAlias.1             = "particle"
+#-----------------APPLICATION SETTINGS--------------
+        flowSolver                      = true
+        gridGenerator                   = false
+        restartFile                     = false ## false
+        initRestart                     = false ## false
+        scratchSize                     = 30.0 #30.0
+#----------------APPLICATION ENVIRONMENT------------
+        outputDir                       = "./out/"
+        geometryInputFileName           = "geometry.toml"
+        gridInputFileName               = "grid.Netcdf"
+        restartDir                      = "./out/"
+        ###calcBcResidual               = true
+#--------------- SOLVER SETTINGS ----------------
+        noSolvers                       = 2
+        multiSolverGrid                 = true
+        solvertype.fluid                = "MAIA_LATTICE_BOLTZMANN"
+        solvertype.particle             = "MAIA_PARTICLE"
+        executionRecipe                 = "RECIPE_INTRASTEP"
+        solverMethod.default            = ""
+        solverMethod.fluid              = "MAIA_LATTICE_CUMULANT" ## "MAIA_LATTICE_BGK" 
+        noCouplers                      = 1
+        solversToCouple_0               = [0,1]
+        couplerType_0                   = "COUPLER_LB_LPT"
+        solverOrder_0                   = [0,1]
+        solverOrder_1                   = [1,0]
+        recipeMaxNoSteps                = 2
+        couplerOrder_0                  = [1,1] 
+        adaptationOrder                 = [0,1]
+        nDim                            = 3
+        noDistributions                 = 27
+        dualTimeStepping                = false
+#------------- FLOW INITIALIZATION --------------
+        initMethod                      = "LB_FROM_ZERO_INIT"
+        ###initialCondition                = 465 # lpt ## dont know if it's needed or not
+#--------------- SOLUTION PROPERTIES ----------------
+        timeSteps                       =  50000 # 200000
+        solutionInterval                =  50 #5000
+        restartInterval                 =  50000 #25000
+        residualInterval                =  1000 #5000
+        restartTimeStep                 =  0 ##23300 ##should be 0 when off 
+#--------------- FLOW VARIABLES ------------------
+        Ma                              = 0.1 #0.03
+        Re                              = 2269.33 #2269.33
+        rho1                            = 1.00 
+        referenceLengthSegId            = 1
+        multiBCTreatment                = "W-I-P"
+        externalForcing                 = false
+        saveExternalForces              = false
+#------------ LPT SETTINGS ---------------------
+        nonDimensionaliseLPT            = true
+        viscosityLaw                    = "CONSTANT"
+        ambientViscosity                = 1.0 
+        particleDensity                 = 1000.0 #2.56
+        
+        #gravitational acceleration acting on the particles
+        Frm                             = [0.0, 0.0, 0.0] #[0.0, 0.0, -4.736354705]
+        particleIdOutput                = true
+        particleInitializationMethod    = 3 #4
+        particleMomentumCoupling        = false # false
+        particleWallCollisions          = true #true
+        particleCollisions              = 0
+        particleNoRedistLayer           = 2
+
+        #0 = no drag; 1 = linear Stokes drag; 2 = Schiller-Naumann correlation; 3 = Pinsky-Khain correlation
+        particleDrag                    = 2
+        
+        #write particle output-file
+        removeParticleVerbosity         = 2
+        particleExchangeBufferSize      = 1000 #11
+        particleCouplingRedist          = true #false 
+
+        #Interpolation of LPT-Variables to LB-Solver
+        # Set particleInterpolationOrder to 1 to avoid issues ! 
+        particleInterpolationOrder      = 2 #1
+        particleInterpolationMethod     = 2 #2
+        particleInterpolationDistFactor = 0.5
+#--------------- GRID AND REFINEMENT PROPERTIES --------------
+        maxNoCells                      = 1000000 #5M 
+        partitionCellOffspringThreshold = 1000
+        maxRfnmntLvl                    = 11 #9
+        noHaloLayers                    = 2
+        initVelocityMethod              = "fromSTL"
+        bndNormalMethod                 = "fromSTL" #"fromSTL"
+        interpolationDistMethod         = "STD"
