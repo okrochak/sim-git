@@ -33,10 +33,9 @@
         dualTimeStepping                = false
 #------------- FLOW INITIALIZATION --------------
         initMethod                      = "LB_FROM_ZERO_INIT"
-        ###initialCondition                = 465 # lpt ## dont know if it's needed or not
 #--------------- SOLUTION PROPERTIES ----------------
         timeSteps                       =  50000 # 200000
-        solutionInterval                =  50 #5000
+        solutionInterval                =  1000 #5000
         restartInterval                 =  50000 #25000
         residualInterval                =  1000 #5000
         restartTimeStep                 =  0 ##23300 ##should be 0 when off 
