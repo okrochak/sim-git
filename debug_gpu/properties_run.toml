@@ -70,10 +70,8 @@
         particleExchangeBufferSize      = 1000 #11
         particleCouplingRedist          = true #false 
 
-        #Interpolation of LPT-Variables to LB-Solver
-        # Set particleInterpolationOrder to 1 to avoid issues ! 
-        particleInterpolationOrder      = 2 #1
-        particleInterpolationMethod     = 2 #2
+        particleInterpolationOrder      = 0 
+        particleInterpolationMethod     = 2 
         particleInterpolationDistFactor = 0.5
 #--------------- GRID AND REFINEMENT PROPERTIES --------------
         maxNoCells                      = 1000000 #5M 
