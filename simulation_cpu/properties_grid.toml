@@ -14,17 +14,17 @@
         spaceDimensions                 = 3              
 # -------------- GRID AND REFINEMENT PROPERTIES --------------  
         maxNoCells                      = 100000000 ##100000000   #Maximale Zellanzahl
-        minLevel                        = 6 #8       #Initielles Verfeinerungslevel
-        maxUniformRefinementLevel       = 6 #8       #Maximales Verfeinerungslevel für die Geo.
-        maxRfnmntLvl                    = 11 #12        #Maximales Verfeinerungslevel
-        maxBoundaryRfnLvl               = 11 #12        #Maximales Verfeinerungslevel des Randes
+        minLevel                        = 8       #Initielles Verfeinerungslevel
+        maxUniformRefinementLevel       = 8       #Maximales Verfeinerungslevel für die Geo.
+        maxRfnmntLvl                    = 12 #12        #Maximales Verfeinerungslevel
+        maxBoundaryRfnLvl               = 12 #12        #Maximales Verfeinerungslevel des Randes
         ##reductionFactor               = 1.0   #Zur Vergrößerung der Initialgitters
 # -------------- REFINEMENT OF THE NASAL CAVITY --------------
         # Set the special refinement type: 0 deactivated, 1 patch only, 2 boundary only, 3 both.
-       localRfnMethod                   = 3                             
+        localRfnMethod                  = 3                             
 
         localBndRfnMethod               = 2 #2        
-        localRfnLvlDiff                 = [0,0,0,0,0] #[1,1,0,1,1]  
+        localRfnLvlDiff                 = [1,1,0,1,1] #[1,1,0,1,1]  
         smoothDistance                  = [3,15,15,15,15] 
         localMinBoundaryThreshold       = 1
         localBndRfnDistance             = [3.0,15.0,15.0,15.0,15.0]   
