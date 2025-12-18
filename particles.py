@@ -6,54 +6,30 @@ from tqdm import tqdm
 # ===========================
 # Configuration
 # ===========================
-NUM_PARTICLES = 10 #1000000
+NUM_PARTICLES = 200000 #1000000
 OUTPUT_FILE = "part.txt"
 PARTICLE_DENSITY = 1000.0  # constant across all particles
 MAX_VELOCITY_MAGNITUDE = 0.15  # max speed for velocity sampling
-# ===========================
-# Check if point is inside STL
-# ===========================
-def filter_points_outside_stl(
-    input_file: str,
-    output_file: str,
-    stl_path: str,
-    batch_size: int = 50000
-):
-    # Load STL once
-    mesh = trimesh.load(stl_path, process=False)
-    if not isinstance(mesh, trimesh.Trimesh):
-        mesh = trimesh.util.concatenate(mesh.dump())
-
-    # Load the particle table
-    data = np.loadtxt(input_file, delimiter="\t")
-
-    # First 3 columns are x,y,z
-    coords = data[:, 2:5]
-
-    keep_mask = np.ones(len(coords), dtype=bool)
-
-    # Process in chunks to avoid memory spikes
-    for start in tqdm(range(0, len(coords), batch_size)):
-        end = start + batch_size
-        chunk = coords[start:end]
-        inside = mesh.contains(chunk)  # vectorized
-        keep_mask[start:end] = ~inside
-
-    filtered = data[keep_mask]
-    np.savetxt(output_file, filtered, delimiter="\t", fmt="%.6f")
-
-    print(f"Filtered {len(data) - len(filtered)} points inside mesh. "
-          f"Kept {len(filtered)} points.")
 
 # ===========================
 # Diameter distribution
 # ===========================
 def sample_diameter(method, **kwargs):
     if method == "log-normal":
-        mean = kwargs["mean"]; sigma = kwargs["sigma"]
+        mean = kwargs.get("mean", 0.0) # Use .get() with a default for robustness
+        sigma = kwargs.get("sigma", 1.0) # Use .get() with a default for robustness
         # log-normal distribution
         # return 1E-6*np.random.lognormal(mean=mean, sigma=sigma)
         return 1E-4*np.random.lognormal(mean=mean, sigma=sigma)
+    elif method == "uniform":
+        choices = kwargs.get("choices")
+        if choices is None:
+            raise ValueError("The 'uniform' method requires a 'choices' argument.")
+        # np.random.choice selects an element uniformly by default
+        return np.random.choice(choices)
+    else:
+        raise ValueError(f"Unknown sampling method: {method}")
+    
 # ===========================
 # Position sampling
 # ===========================
@@ -90,18 +66,17 @@ def sample_velocity(max_magnitude):
 def generate_particles(n_particles, output_file):
     with open(output_file, "w") as f:
         for _ in tqdm(range(n_particles)):
-            diameter = sample_diameter(method="log-normal", mean=5.167, sigma=0.75)
+            diameter = sample_diameter(method="uniform", choices = [1E-1, 1E-2, 1E-3, 1E-4, 1E-5, 1E-6])
             density = PARTICLE_DENSITY
             position = sample_position(
-                # method="sphere",
-                # radius=5.0,
-                # x=15.0, 
-                # y=-275.0,
-                # z=180.0
                 method="box",
                 xmin=-20.0, xmax=20.0,
-                ymin=-80.0, ymax=-40.0,
-                zmin=-40.0, zmax=-0.0
+                ymin=-70.0, ymax=-30.0,
+                zmin=-50.0, zmax=-10.0
+                # method="box",
+                # xmin=-20.0, xmax=20.0,
+                # ymin=-80.0, ymax=-40.0,
+                # zmin=-40.0, zmax=-0.0
             )
             velocity = sample_velocity(MAX_VELOCITY_MAGNITUDE)
             row = [diameter, density] + position # + velocity
