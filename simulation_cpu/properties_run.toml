@@ -55,7 +55,7 @@
         Frm                             = [0.0, 0.0, 0.0] ## -4.736354705  #gravitational acceleration acting on the particles
 
         particleIdOutput                = true
-        particleInitializationMethod    = 4 #3 for no velocity IC
+        particleInitializationMethod    = 3
         particleMomentumCoupling        = false # false
         particleWallCollisions          = true
         cartesianWallCollisions         = false
@@ -72,7 +72,7 @@
         particleInterpolationMethod     = 2 #2
         particleInterpolationDistFactor = 0.5
 #--------------- POST PROCESSING -----------------------------
-        postProcessing                  = true
+        postProcessing                  = false # true
         noPostProcessing                = 1
         postProcessingSolverIds         = [0,0] # THIS IS THE LB SOLVER ID, ADJUST TO YOUR CASE
         postProcessingType_0            = "POSTPROCESSING_LB"
@@ -82,10 +82,10 @@
         pointDataSampleInterval         = 1
         pointDataWriteInterval          = 10000
 #--------------- GRID AND REFINEMENT PROPERTIES --------------
-        maxNoCells                      = 2000000 #5M 
-        partitionCellOffspringThreshold = 1000
-        maxRfnmntLvl                    = 11 #9
+        maxNoCells                      = 2000000 
+        partitionCellOffspringThreshold = 100000
+        maxRfnmntLvl                    = 12
         noHaloLayers                    = 2
         initVelocityMethod              = "fromSTL"
-        bndNormalMethod                 = "fromSTL" #"fromSTL"
+        bndNormalMethod                 = "fromSTL"
         interpolationDistMethod         = "STD"
