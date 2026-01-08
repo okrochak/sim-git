@@ -1,0 +1,4 @@
+#!/bin/bash
+module purge
+module load Stages/2025
+module load NVHPC OpenMPI Boost FFTW.MPI PnetCDF
