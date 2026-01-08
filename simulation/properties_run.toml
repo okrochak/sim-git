@@ -3,10 +3,9 @@
 #-----------------APPLICATION SETTINGS--------------
         flowSolver                      = true
         gridGenerator                   = false
-        restartFile                     = false ## false
-        initRestart                     = false ## false
-        scratchSize                     = 30.0 #30.0
-        noDomains                       = 1
+        restartFile                     = false
+        initRestart                     = false
+        scratchSize                     = 30.0
 #----------------APPLICATION ENVIRONMENT------------
         outputDir                       = "./out/"
         geometryInputFileName           = "geometry.toml"
@@ -35,9 +34,9 @@
         initMethod                      = "LB_FROM_ZERO_INIT"
 #--------------- SOLUTION PROPERTIES ----------------
         timeSteps                       =  1000000 # 500000
-        solutionInterval                =  10000 #5000
-        restartInterval                 =  10000 #50000
-        residualInterval                =  10000 #5000
+        solutionInterval                =  5000 #5000
+        restartInterval                 =  50000 #50000
+        residualInterval                =  50000 #5000
         restartTimeStep                 =  0 ##23300 ##should be 0 when off 
 #--------------- FLOW VARIABLES ------------------
         Ma                              = 0.1 #0.1
@@ -45,7 +44,7 @@
         rho1                            = 1.00 
         referenceLengthSegId            = 4
         multiBCTreatment                = "W-I-P"
-        alpha                           = 8.024685392 ##2.006171348
+        alpha                           = 2.006171348
 #------------ LPT SETTINGS ---------------------
         nonDimensionaliseLPT            = true
         viscosityLaw                    = "CONSTANT"
@@ -68,8 +67,8 @@
         particleCouplingRedist          = false 
 
         #Interpolation of LPT-Variables to LB-Solver
-        particleInterpolationOrder      = 1 ## Set particleInterpolationOrder to 1 to avoid issues ! 
-        particleInterpolationMethod     = 2 #2
+        particleInterpolationOrder      = 1
+        particleInterpolationMethod     = 2
         particleInterpolationDistFactor = 0.5
 #--------------- POST PROCESSING -----------------------------
         postProcessing                  = true # true
