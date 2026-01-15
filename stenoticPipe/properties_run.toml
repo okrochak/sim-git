@@ -5,7 +5,7 @@
         gridGenerator                   = false
         restartFile                     = false ## false
         initRestart                     = false ## false
-        scratchSize                     = 300.0 #30.0
+        scratchSize                     = 30.0 #30.0
 #----------------APPLICATION ENVIRONMENT------------
         outputDir                       = "./out/"
         geometryInputFileName           = "geometry.toml"
@@ -33,10 +33,10 @@
 #------------- FLOW INITIALIZATION --------------
         initMethod                      = "LB_FROM_ZERO_INIT"
 #--------------- SOLUTION PROPERTIES ----------------
-        timeSteps                       =  2000 # 500000
-        solutionInterval                =  100 #5000
-        restartInterval                 =  2000 #50000
-        residualInterval                =  2000 #5000
+        timeSteps                       =  10000 # 500000
+        solutionInterval                =  500 #5000
+        restartInterval                 =  5000 #50000
+        residualInterval                =  5000 #5000
         restartTimeStep                 =  0 ##23300 ##should be 0 when off 
 #--------------- FLOW VARIABLES ------------------
         Ma                              = 0.1 #0.1
@@ -63,7 +63,7 @@
         particleNoRedistLayer           = 2
         particleDrag                    = 2  #0 = no drag; 1 = linear Stokes drag; 2 = Schiller-Naumann correlation; 3 = Pinsky-Khain correlation
         removeParticleVerbosity         = 2   #write particle output-file
-        particleExchangeBufferSize      = 100000 #11
+        particleExchangeBufferSize      = 1000 #11
         particleCouplingRedist          = false 
 
         #Interpolation of LPT-Variables to LB-Solver
@@ -75,7 +75,7 @@
 #--------------- GRID AND REFINEMENT PROPERTIES --------------
         maxNoCells                      = 2000000 
         partitionCellOffspringThreshold = 100000
-        maxRfnmntLvl                    = 9
+        maxRfnmntLvl                    = 10
         noHaloLayers                    = 2
         initVelocityMethod              = "fromSTL"
         bndNormalMethod                 = "fromSTL"
