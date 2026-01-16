@@ -3,11 +3,11 @@
 #-----------------APPLICATION SETTINGS--------------
         flowSolver                      = true
         gridGenerator                   = false
-        restartFile                     = false ## false
+        restartFile                     = true ## false
         initRestart                     = false ## false
         scratchSize                     = 100 #30.0
 #----------------APPLICATION ENVIRONMENT------------
-        outputDir                       = "./out/"
+        outputDir                       = "./out_restart/"
         geometryInputFileName           = "geometry.toml"
         gridInputFileName               = "grid.Netcdf"
         restartDir                      = "./out/"
@@ -33,11 +33,11 @@
 #------------- FLOW INITIALIZATION --------------
         initMethod                      = "LB_FROM_ZERO_INIT"
 #--------------- SOLUTION PROPERTIES ----------------
-        timeSteps                       =  20000 # 500000
+        timeSteps                       =  5000 # 500000
         solutionInterval                =  500 #5000
         restartInterval                 =  10000 #50000
         residualInterval                =  10000 #5000
-        restartTimeStep                 =  0 ##23300 ##should be 0 when off 
+        restartTimeStep                 =  10000 ##23300 ##should be 0 when off 
 #--------------- FLOW VARIABLES ------------------
         Ma                              = 0.05 #0.1
         Re                              = 10000 #2269.33 
