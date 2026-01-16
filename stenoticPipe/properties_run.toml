@@ -33,13 +33,13 @@
 #------------- FLOW INITIALIZATION --------------
         initMethod                      = "LB_FROM_ZERO_INIT"
 #--------------- SOLUTION PROPERTIES ----------------
-        timeSteps                       =  10000 # 500000
-        solutionInterval                =  500 #5000
-        restartInterval                 =  5000 #50000
-        residualInterval                =  5000 #5000
+        timeSteps                       =  50000 # 500000
+        solutionInterval                =  1000 #5000
+        restartInterval                 =  10000 #50000
+        residualInterval                =  10000 #5000
         restartTimeStep                 =  0 ##23300 ##should be 0 when off 
 #--------------- FLOW VARIABLES ------------------
-        Ma                              = 0.1 #0.1
+        Ma                              = 0.05 #0.1
         Re                              = 10000 #2269.33 
         rho1                            = 1.00 
         referenceLengthSegId            = 0
@@ -63,7 +63,7 @@
         particleNoRedistLayer           = 2
         particleDrag                    = 2  #0 = no drag; 1 = linear Stokes drag; 2 = Schiller-Naumann correlation; 3 = Pinsky-Khain correlation
         removeParticleVerbosity         = 2   #write particle output-file
-        particleExchangeBufferSize      = 1000 #11
+        particleExchangeBufferSize      = 10000 #11
         particleCouplingRedist          = false 
 
         #Interpolation of LPT-Variables to LB-Solver
@@ -75,7 +75,7 @@
 #--------------- GRID AND REFINEMENT PROPERTIES --------------
         maxNoCells                      = 2000000 
         partitionCellOffspringThreshold = 100000
-        maxRfnmntLvl                    = 10
+        maxRfnmntLvl                    = 9
         noHaloLayers                    = 2
         initVelocityMethod              = "fromSTL"
         bndNormalMethod                 = "fromSTL"
