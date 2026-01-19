@@ -3,7 +3,7 @@
 # -------------- APPLICATION SETTINGS  --------------
         flowSolver                      = false   
         gridGenerator                   = true    
-        scratchSize                     = 150.0
+        scratchSize                     = 30.0
         dynamicLoadBalancing            = false
 # -------------- APPLICATION ENVIRONMENT  --------------
         outputDir                       = "./out/"       
@@ -13,20 +13,20 @@
 # -------------- SPATIAL DISCRETIZATION --------------
         spaceDimensions                 = 3              
 # -------------- GRID AND REFINEMENT PROPERTIES --------------  
-        maxNoCells                      = 300000000     #Maximale Zellanzahl
+        maxNoCells                      = 3000000     #Maximale Zellanzahl
         minLevel                        = 8            #Initielles Verfeinerungslevel
         maxUniformRefinementLevel       = 8            #Maximales Verfeinerungslevel für die Geo.
         maxRfnmntLvl                    = 10           #Maximales Verfeinerungslevel
         maxBoundaryRfnLvl               = 10           #Maximales Verfeinerungslevel des Randes
 # -------------- REFINEMENT OF THE MESH --------------
         # Set the special refinement type: 0 deactivated, 1 patch only, 2 boundary only, 3 both.
-        localRfnMethod                  = 3
+        localRfnMethod                  = 2
 
-        localBndRfnMethod               = 2 #2        
-        smoothDistance                  = [5]
-        localMinBoundaryThreshold       = 1
-        localBndRfnDistance             = [0.5]
-        localRfnBoundaryIds             = [2]
+        localBndRfnMethod               = 0 #2        
+        smoothDistance                  = 3
+        localMinBoundaryThreshold       = 2
+        localBndRfnDistance             = 0.5 #0.5
+        localRfnBoundaryIds             = 2
 
         localRfnLvlMethods              = "B-B"
         localRfnLevelProperties         = [-90.000, -10.000, -10.000, 20.000, 10.000, 10.000, 
