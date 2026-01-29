@@ -55,16 +55,13 @@
 
         particleIdOutput                = true
         particleInitializationMethod    = 3
-        particleMomentumCoupling        = false # false
+        particleMomentumCoupling        = false
         particleWallCollisions          = true
         cartesianWallCollisions         = false
         calcCutInfo                     = true
-        particleCollisions              = 4
-        particleNoRedistLayer           = 2
         particleDrag                    = 2  #0 = no drag; 1 = linear Stokes drag; 2 = Schiller-Naumann correlation; 3 = Pinsky-Khain correlation
         removeParticleVerbosity         = 2   #write particle output-file
         particleExchangeBufferSize      = 10000 #11
-        particleCouplingRedist          = false 
 
         #Interpolation of LPT-Variables to LB-Solver
         particleInterpolationOrder      = 1 ## Set particleInterpolationOrder to 1 to avoid issues ! 
