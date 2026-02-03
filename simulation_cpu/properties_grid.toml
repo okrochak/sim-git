@@ -3,7 +3,7 @@
 # -------------- APPLICATION SETTINGS  --------------
         flowSolver                      = false   
         gridGenerator                   = true    
-        scratchSize                     = 150.0
+        scratchSize                     = 30.0
         dynamicLoadBalancing            = false
 # -------------- APPLICATION ENVIRONMENT  --------------
         outputDir                       = "./out/"       
@@ -13,28 +13,38 @@
 # -------------- SPATIAL DISCRETIZATION --------------
         spaceDimensions                 = 3              
 # -------------- GRID AND REFINEMENT PROPERTIES --------------  
-        maxNoCells                      = 300000000     #Maximale Zellanzahl
-        minLevel                        = 8             #Initielles Verfeinerungslevel
-        maxUniformRefinementLevel       = 8             #Maximales Verfeinerungslevel für die Geo.
-        maxRfnmntLvl                    = 12            #Maximales Verfeinerungslevel
-        maxBoundaryRfnLvl               = 12            #Maximales Verfeinerungslevel des Randes
-        ##reductionFactor               = 1.0           #Zur Vergrößerung der Initialgitters
+        maxNoCells                      = 100000000     #Maximale Zellanzahl
+        minLevel                        = 7             #Initielles Verfeinerungslevel
+        maxUniformRefinementLevel       = 7             #Maximales Verfeinerungslevel für die Geo.
+        maxRfnmntLvl                    = 11            #Maximales Verfeinerungslevel
+        maxBoundaryRfnLvl               = 11            #Maximales Verfeinerungslevel des Randes
+        reductionFactor                 = 1.170285714         #Zur Vergrößerung der Initialgitters
 # -------------- REFINEMENT OF THE NASAL CAVITY --------------
         # Set the special refinement type: 0 deactivated, 1 patch only, 2 boundary only, 3 both.
         localRfnMethod                  = 3                             
+        
         localBndRfnMethod               = 2 
-        localRfnLvlDiff                 = [1,0,0,0,1]  
-        smoothDistance                  = [3,15,15,15,15] 
+        localRfnLvlDiff                 = [0,0,0,0,0]  
+        localBndRfnMinLvlDiff           = [0,0,0,0,0]  
+        smoothDistance                  = [5,15,15,15,15] 
         localMinBoundaryThreshold       = 1
-        localBndRfnDistance             = [3.0,15.0,30.0,5.0,15.0]  
+        localBndRfnDistance             = [2.6,15.0,15.0,15.0,15.0]  
+        
+        #localRfnLvlDiff                 = [1,0,0,0,1]  
+        #smoothDistance                  = [5,15,15,15,15] 
+        #localMinBoundaryThreshold       = 1
+        #localBndRfnDistance             = [3.0,15.0,30.0,5.0,15.0]  
+
         localRfnBoundaryIds             = [0,1,2,3,4] 
-        localRfnLvlMethods              = "BAA-BAA"
+        localRfnLvlMethods              = "BAA-BAA-B"
         localRfnLevelProperties         = [-85.000, -160.000, -115.000, 85.000, 100.000, 55.000, 
                                            14.699, 24.182, 9.957, -122.492, -201.520, -82.979, 20.000, 30.000, 
                                            -11.182, 27.156, 6.123, 93.183, -226.303, -51.029, 20.000, 30.000,
                                            -65.000, -140.000, -95.000, 65.000, 100.000, 35.000, 
                                            9.799, 16.122, 6.638, -73.495, -120.912, -49.787, 15.000, 20.000, 
-                                           -7.455, 18.104, 4.082, 55.910, -135.782, -30.617, 15.000, 20.000]
+                                           -7.455, 18.104, 4.082, 55.910, -135.782, -30.617, 15.000, 20.000,
+                                          -45.000, -120.000, -75.000, 45.000, 100.000, 20.000]
+
 
 #-------------------PARTITIONING--------------------
         # Weight higher level more than lower due to dx~dt nature of LB
@@ -42,4 +52,4 @@
         # (just rule of thumb and open to be tuned for optimal balanced case)
         partitionCellOffspringThreshold = 100000
         weightMethod                    = 3 # 0: all have 1, 3: set weights per level
-        setWeightValue                  = [10.0, 5.0, 2.5, 1.7, 1.1]
+        setWeightValue                  = [2.0, 1.7, 1.45, 1.2, 1.0]
