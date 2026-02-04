@@ -1,0 +1,119 @@
+solverAlias.0             = "fluid"
+solverAlias.1             = "particle"
+
+#-----------------APPLICATION SETTINGS--------------
+
+gridGenerator             = false
+flowSolver                = true
+restartFile               = false
+initRestart               = false ## fals
+scratchSize               = 15.0
+
+#----------------APPLICATION ENVIRONMENT------------
+
+outputDir.default         = "./out/"
+restartDir.default        = "./restart/"
+solutionOutput.default    = "./out/"
+geometryInputFileName     = "geometry.toml"
+gridInputFileName         = "grid.Netcdf"
+
+#--------------- SOLUTION PROPERTIES ----------------
+
+timeSteps                 = 1000
+solutionInterval          = 25
+restartInterval           = 1000
+residualInterval          = 1000
+restartTimeStep           = 0
+
+#--------------- NUMERICAL PROPERTIES --------------
+
+noSolvers                 = 2
+multiSolverGrid           = true
+
+solvertype.fluid          = "MAIA_LATTICE_BOLTZMANN"
+solvertype.particle       = "MAIA_PARTICLE"
+
+executionRecipe           = "RECIPE_INTRASTEP"
+solverMethod.default      = ""
+solverMethod.fluid        = "MAIA_LATTICE_BGK"
+
+noCouplers                = 1
+solversToCouple_0         = [0,1]
+couplerType_0             = "COUPLER_LB_LPT"
+solverOrder_0             = [0,1]
+solverOrder_1             = [1,0]
+recipeMaxNoSteps          = 2
+couplerOrder_0            = [1,1] 
+adaptationOrder           = [0,1]
+
+nDim                      = 3
+noDistributions           = 27
+
+dualTimeStepping          = false
+
+#------------- FLOW INITIALIZATION --------------
+
+initMethod               = "LB_FROM_ZERO_INIT" 
+ 
+#--------------- FLOW VARIABLES ------------------
+
+Re                       = 5000
+Ma                       = 0.1
+rho1                     = 1.00 
+referenceLengthSegId     = 0
+multiBCTreatment                = "W-I-P"
+
+#------------ LPT SETTINGS ---------------------
+viscosityLaw         = "CONSTANT"
+ambientViscosity     = 1.0 
+
+particleDensity      = 2.56 
+
+#gravitational acceleration acting on the particles
+Frm           = [1000.0, 0.0, 0.0]
+
+#read from file
+particleInitializationMethod = 3
+
+particleMomentumCoupling = false
+particleWallCollisions   = true
+cartesianWallCollisions         = false
+calcCutInfo                     = true
+
+#no collisions
+particleCollisions       = 0
+
+
+#0 = no drag; 1 = linear Stokes drag; 2 = Schiller-Naumann correlation; 3 = Pinsky-Khain correlation
+particleDrag             = 2
+
+#write particle output-file
+particleExchangeBufferSize = 11
+
+#Interpolation of LPT-Variables to LB-Solver
+particleInterpolationOrder = 2 
+particleInterpolationMethod = 2
+particleInterpolationDistFactor = 0.5 
+
+#--------------- GRID AND REFINEMENT PROPERTIES --------------
+maxNoCells               = 100000
+maxRfnmntLvl             = 7
+noHaloLayers             = 2
+
+initVelocityMethod              = "fromSTL"
+bndNormalMethod                 = "fromSTL"
+interpolationDistMethod         = "STD"
+
+#--------------- POST PROCESSING -----------------------------
+postProcessing = true
+noPostProcessing = 1
+postProcessingType_0 = "POSTPROCESSING_LBLPT"
+postProcessingSolverIds = [0]
+postProcessingOps_0 = "PP_PARTICLE_SOLUTION" 
+postprocessingOrder_0 = [0,1]
+
+particleSolutionInterval = 100
+
+#write particle.log
+writeParLog              = true
+particleLogInterval      = 10
