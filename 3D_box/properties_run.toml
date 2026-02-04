@@ -7,20 +7,20 @@ gridGenerator             = false
 flowSolver                = true
 restartFile               = false
 initRestart               = false ## fals
-scratchSize               = 15.0
+scratchSize               = 30.0
 
 #----------------APPLICATION ENVIRONMENT------------
 
 outputDir.default         = "./out/"
-restartDir.default        = "./restart/"
+restartDir.default        = "./out/"
 solutionOutput.default    = "./out/"
 geometryInputFileName     = "geometry.toml"
 gridInputFileName         = "grid.Netcdf"
 
 #--------------- SOLUTION PROPERTIES ----------------
 
-timeSteps                 = 1000
-solutionInterval          = 25
+timeSteps                 = 5000
+solutionInterval          = 100
 restartInterval           = 1000
 residualInterval          = 1000
 restartTimeStep           = 0
@@ -35,7 +35,7 @@ solvertype.particle       = "MAIA_PARTICLE"
 
 executionRecipe           = "RECIPE_INTRASTEP"
 solverMethod.default      = ""
-solverMethod.fluid        = "MAIA_LATTICE_BGK"
+solverMethod.fluid        = "MAIA_LATTICE_CUMULANT"
 
 noCouplers                = 1
 solversToCouple_0         = [0,1]
@@ -57,8 +57,8 @@ initMethod               = "LB_FROM_ZERO_INIT"
  
 #--------------- FLOW VARIABLES ------------------
 
-Re                       = 5000
-Ma                       = 0.1
+Re                       = 5000 #5000
+Ma                       = 0.05
 rho1                     = 1.00 
 referenceLengthSegId     = 0
 multiBCTreatment                = "W-I-P"
@@ -67,7 +67,7 @@ multiBCTreatment                = "W-I-P"
 viscosityLaw         = "CONSTANT"
 ambientViscosity     = 1.0 
 
-particleDensity      = 2.56 
+particleDensity      = 100.0 
 
 #gravitational acceleration acting on the particles
 Frm           = [1000.0, 0.0, 0.0]
@@ -96,8 +96,8 @@ particleInterpolationMethod = 2
 particleInterpolationDistFactor = 0.5 
 
 #--------------- GRID AND REFINEMENT PROPERTIES --------------
-maxNoCells               = 100000
-maxRfnmntLvl             = 7
+maxNoCells               = 1000000
+maxRfnmntLvl             = 8
 noHaloLayers             = 2
 
 initVelocityMethod              = "fromSTL"
