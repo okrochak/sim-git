@@ -22,10 +22,11 @@
         # Set the special refinement type: 0 deactivated, 1 patch only, 2 boundary only, 3 both.
         localRfnMethod                  = 2
 
-        localBndRfnMethod               = 0 #2        
+        localBndRfnMethod               = 2 #2        
         smoothDistance                  = 3
         localMinBoundaryThreshold       = 2
-        localBndRfnDistance             = 0.5 #0.5
+        localBndRfnMinLvlDiff           = 0
+        localBndRfnDistance             = 1.25 #0.5
         localRfnBoundaryIds             = 2
 
         localRfnLvlMethods              = "B-B"
