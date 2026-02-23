@@ -6,7 +6,7 @@ from tqdm import tqdm
 # ===========================
 # Configuration
 # ===========================
-NUM_PARTICLES = 200000 #1000000
+NUM_PARTICLES = 40000 #1000000
 OUTPUT_FILE = "part.txt"
 PARTICLE_DENSITY = 1000.0  # constant across all particles
 MAX_VELOCITY_MAGNITUDE = 0.15  # max speed for velocity sampling
@@ -70,13 +70,10 @@ def generate_particles(n_particles, output_file):
             density = PARTICLE_DENSITY
             position = sample_position(
                 method="box",
-                xmin=-20.0, xmax=20.0,
-                ymin=-70.0, ymax=-30.0,
-                zmin=-50.0, zmax=-10.0
+                xmin=-40.0, xmax=40.0,
+                ymin=-87.0, ymax=-7.0,
+                zmin=-83.0, zmax=-3.0,
                 # method="box",
-                # xmin=-20.0, xmax=20.0,
-                # ymin=-80.0, ymax=-40.0,
-                # zmin=-40.0, zmax=-0.0
             )
             velocity = sample_velocity(MAX_VELOCITY_MAGNITUDE)
             row = [diameter, density] + position # + velocity
