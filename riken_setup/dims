@@ -2,10 +2,20 @@ nostril 1 Area: 0.000123482
 nostril 2 Area: 0.000117479
 avg: 0.0001204805
 outlet area: 0.000195658
-flow rate: 7.5 l/min = 0.000125 m3/scratchSize
+flow rate: 7.5 l/min = 0.000125 m3/s
 u_inlet = 0.5187561473 m/s
-u_outlet = 0.6388698648
+u_outlet = u_ref = 0.6388698648
 D_inlet approx = 0.01238549704
 D_outlet = 0.01578351998
 Re_outlet =    672.2410184
+nu = 15E-6. 
+<m d="0" >      * hydraulic diameter:   15.459598
+</m>
+<m d="0" >      * charcteristic length: 77.375506 [cell units]
+
+l_ref = 1.0 [mm]
+Fr_m = gl/u2 = 1e-3 * 9.81 / (0.6389)^2 = 0.02403273685
+Re = UL/nu = 1e-3 * 0.6389 / 15E-6 = 42.5933
+
+
 Frm                             = [0.0, 0.0, -1.623588503] u_outlet/sqrt(g*D_outlet)
