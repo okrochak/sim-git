@@ -1,0 +1,24 @@
+        noSolvers                       = 2
+        multiSolverGrid                 = true
+# -------------- APPLICATION SETTINGS  --------------
+        flowSolver                      = false   
+        gridGenerator                   = true    
+        scratchSize                     = 150.0
+        dynamicLoadBalancing            = false
+# -------------- APPLICATION ENVIRONMENT  --------------
+        outputDir                       = "./out/"       
+        geometryInputFileName           = "geometry.toml"
+	gridOutputFileName              = "grid.Netcdf"  
+        gridInputFileName               = "grid.Netcdf"  
+# -------------- SPATIAL DISCRETIZATION --------------
+        spaceDimensions                 = 3              
+# -------------- GRID AND REFINEMENT PROPERTIES --------------  
+        maxNoCells                      = 100000000     #Maximale Zellanzahl
+        minLevel                        = 11             #Initielles Verfeinerungslevel
+        maxUniformRefinementLevel       = 11            #Maximales Verfeinerungslevel für die Geo.
+        maxRfnmntLvl                    = 11            #Maximales Verfeinerungslevel
+        maxBoundaryRfnLvl               = 11            #Maximales Verfeinerungslevel des Randes
+        reductionFactor                 = 1.284193695       #Zur Vergrößerung der Initialgitters
+# -------------- REFINEMENT OF THE NASAL CAVITY --------------
+        # Set the special refinement type: 0 deactivated, 1 patch only, 2 boundary only, 3 both.
+        localRfnMethod                  = 0                             

@@ -1,0 +1,23 @@
+noSegments = 7
+inOutSegmentsIds = [0,1,2,3,4,5]
+
+filename.0 = "stl/inlet.stl" 
+filename.1 = "stl/outlet1.stl"
+filename.2 = "stl/outlet2.stl"
+filename.3 = "stl/outlet3.stl"
+filename.4 = "stl/outlet4.stl"
+filename.5 = "stl/outlet5.stl"
+filename.6 = "stl/wall.stl"
+
+
+"body_segments.inlet1"  = 0
+"body_segments.outlet1" = [1,2,3,4,5]
+"body_segments.wall1"   = 6
+
+BC.0  = 1000 #1080
+BC.1  = 4000
+BC.2  = 4000
+BC.3  = 4000
+BC.4  = 4000
+BC.5  = 4000
+BC.6  = 2000
