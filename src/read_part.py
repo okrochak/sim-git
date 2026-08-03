@@ -295,12 +295,13 @@ for i, diam in enumerate(diams):
 D, DIA = np.meshgrid(depth_centers, diams)   # x = depth, y = diameter
 
 fig, ax = plt.subplots()
-cs = ax.contourf(D, DIA, pdf_grid, levels=20, cmap="viridis")
+cs = ax.contourf(D, DIA, pdf_grid, levels=10, cmap="viridis")
 fig.colorbar(cs, ax=ax, label="probability density")
 ax.set_xlabel("deposition depth")
 ax.set_ylabel("diameter")
 ax.set_yscale("log")
 ax.set_xlim([0,100])
+ax.set_ylim([1e-5, 2.5e-2])
 fig.savefig("depth_pdf_by_diam.pdf", dpi=300, bbox_inches="tight")
 
 
@@ -325,21 +326,22 @@ def diam_pmf(sub):
             .reindex(diams, fill_value=0).to_numpy() / len(full))
 
 groups = {
-    "all (200k)":      full,
-    "deposited (1+2)": full[full["status"] >= 1],
-    "terminal (2)":    full[full["status"] == 2],
+    "inhaled":    full[full["status"] == 2],
+    "deposited + inhaled": full[full["status"] >= 1],
+    "all":      full,
 }
 
 width = 0.8 / len(groups)
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(6,3))
+colors= ["#ff7f0e","#1f77b4", "#acacac"]
 for i, (label, sub) in enumerate(groups.items()):
     offset = (i - (len(groups) - 1) / 2) * width
-    ax.bar(x + offset, diam_pmf(sub), width=width, label=label)
-ax.set_xlabel("diameter")
-ax.set_ylabel("fraction of all particles")
+    ax.bar(x + offset, diam_pmf(sub), width=width, label=label, color=colors[i])
+ax.set_xlabel("$d_{\mathrm{p}} ~[mm]$")
+ax.set_ylabel("$N/N_{\mathrm{p}}$")
 ax.set_xticks(x)
 ax.set_xticklabels([f"{d:.3g}" for d in diams], rotation=45)
-ax.legend()
+ax.legend(loc="upper right")
 fig.savefig("diam_pdf_by_status.pdf", dpi=300, bbox_inches="tight")
 
 
@@ -360,20 +362,20 @@ with np.errstate(invalid="ignore", divide="ignore"):
     frac_term = np.where(total > 0, term / total, 0.0)
 
 bw = edges[1] - edges[0]
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(6,3))
 
 # background: total particle count per bin, to show the extent of IC distance
 ax2 = ax.twinx()
-ax2.bar(centers, total, width=bw, color="lightgray", alpha=0.5, zorder=0,
+ax2.bar(centers, total, width=bw, color="gray", alpha=0.5, zorder=0,
         label="all particles (count)")
 ax2.set_ylabel("particle count")
 
 # deposition fractions on top of the background
 ax.set_zorder(ax2.get_zorder() + 1)
 ax.patch.set_visible(False)
-ax.bar(centers - 0.2 * bw, frac_dep,  width=0.4 * bw, label="deposited (1)")
-ax.bar(centers + 0.2 * bw, frac_term, width=0.4 * bw, label="terminal (2)")
-ax.set_xlabel("IC distance to origin")
+ax.bar(centers - 0.2 * bw, frac_dep,  width=0.4 * bw, label="deposited + inhaled ")
+ax.bar(centers + 0.2 * bw, frac_term, width=0.4 * bw, label="inhaled")
+ax.set_xlabel("$d_{\mathrm{IC}} ~[mm]$")
 ax.set_ylabel("fraction of particles in bin")
 
 h1, l1 = ax.get_legend_handles_labels()
