@@ -155,43 +155,15 @@ class Particles:
         else:
             raise ValueError(f"Unknown diameter method: {method}")
 
-    def _check(self, caller):
-        if self.positions is None or self.diameters is None:
-            raise RuntimeError(
-                f"Call sample_position() and sample_diameter() before {caller}().")
-
     def generate(self):
         '''Write the solver input: diameter, density, position.'''
-        self._check("generate")
+        if self.positions is None or self.diameters is None:
+            raise RuntimeError(
+                "Call sample_position() and sample_diameter() before generate().")
         with open(self.output_file, "w") as f:
             for i in tqdm(range(self.n_particles)):
                 row = [self.diameters[i], self.density] + self.positions[i].tolist()
                 f.write("\t".join(f"{val:.6f}" for val in row) + "\n")
-
-    def save_vtk(self, vtk_file = None):
-        self._check("save_vtk")
-        if vtk_file is None:
-            vtk_file = self.output_file.rsplit(".", 1)[0] + ".vtk"
-
-        n = self.n_particles
-        with open(vtk_file, "w") as f:
-            f.write("# vtk DataFile Version 2.0\nParticles\nASCII\n")
-            f.write("DATASET POLYDATA\n")
-            f.write(f"POINTS {n} float\n")
-            for p in self.positions:
-                f.write(f"{p[0]:.6e} {p[1]:.6e} {p[2]:.6e}\n")
-            f.write(f"VERTICES {n} {2 * n}\n")
-            for i in range(n):
-                f.write(f"1 {i}\n")
-            f.write(f"POINT_DATA {n}\n")
-            f.write("SCALARS diameter float 1\nLOOKUP_TABLE default\n")
-            for d in self.diameters:
-                f.write(f"{d:.6e}\n")
-            f.write("SCALARS density float 1\nLOOKUP_TABLE default\n")
-            for _ in range(n):
-                f.write(f"{self.density:.6e}\n")
-
-        print(f"Wrote VTK file: {vtk_file}")
 
 
 def plot_distributions(file_path, fileName = "particle_distribution.png"):
@@ -214,7 +186,7 @@ def plot_distributions(file_path, fileName = "particle_distribution.png"):
 
 def main():
     common = argparse.ArgumentParser(add_help=False)
-    common.add_argument("-n", "--count", type=int, default=56000)
+    common.add_argument("-n", "--count", type=int, default=200000)
     common.add_argument("-o", "--output", default="part",
                         help="output stem: writes <stem>.txt and <stem>.vtp")
     common.add_argument("--diameters", type=float, nargs="+", default=DIAMETERS,
