@@ -4,3 +4,4 @@ setup/.DS_Store
 *.Netcdf
 *.pdf
 *.vtp
+__pycache__/

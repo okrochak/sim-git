@@ -1,9 +1,14 @@
-import pandas as pd
 import sys
+
+import pandas as pd
 
 filepath = sys.argv[1] if len(sys.argv) > 1 else "particle.log"
 
-df = pd.read_csv(filepath, sep=r"\s+", header=None, usecols=[3, 9], names=["diameter", "status"])
+df = pd.read_csv(filepath, sep=r"\s+", header=None, usecols=[2, 3, 9],
+                 names=["id", "diameter", "status"])
+
+# a particle can appear more than once; keep only its latest appearance
+df = df.drop_duplicates("id", keep="last")
 
 stats = df.groupby(["diameter", "status"]).size().unstack(fill_value=0)
 stats.columns.name = None
@@ -12,4 +17,4 @@ stats["total"] = stats.sum(axis=1)
 stats["dep_rate"] = stats["deposited"] / stats["total"]
 
 print(stats.to_string())
-stats.to_csv('result.csv',sep=',')
+stats.to_csv("result.csv", sep=",")
