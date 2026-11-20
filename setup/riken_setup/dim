@@ -1,0 +1,25 @@
+
+
+outlet area                     A_outlet                                        195.657721671439 mm2
+outlet perimeter                P_outlet                                        50.6242753530274 mm
+outlet hydraulic diameter       D_outlet = 4A/P = 4*195.6577 / 50.6242          15.45959683 mm
+reference length                L_ref                                           1 mm
+flow rate                       Q = 30 l / min                                  500000 mm3/s
+
+reference velocity              U_ref = Q/A_outlet                              2555.483094 mm/s 
+air kinematic viscosity         nu = 15 * 10 -6 m2/s                            15 mm2/s
+Reynolds                        Re = U_ref * L_ref / nu                         170.3655396
+Mach                            Ma                                              0.05
+Cell length                     dx                                              0.2 mm
+LB reference length (nondim)    L*= L_ref/dx                                    5.0
+Time step                       dt = Ma * dx / (sqrt(3)U_ref) =                 2.25926085 * 10^{-6} s
+                                   = 0.05*0.2/(sqrt(3)*2555.4830)
+Simulation time (1 cycle)       T                                               4 s
+Number of timesteps             N = T/dt                                        1770490
+Non-dimensional viscosity       nu* = Ma * L* / (sqrt(3)Re) =                   8.47222787 * 10^{-4}
+                                    = 0.05*5.0 /(sqrt(3)170.3655396)
+BC frequency                    alpha = L*/ sqrt(N * nu*) =                     0.1290994675
+                                      = 5.0/ sqrt(1770490*8.472*10-4)
+
+gravitational force LPT         Fr_m = g L_ref/U_ref2 =                         0.001502183595
+                                     = 9.81*10^-3 / (2.5554830^2) 

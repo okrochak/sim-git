@@ -3,15 +3,15 @@
 #-----------------APPLICATION SETTINGS--------------
         flowSolver                      = true
         gridGenerator                   = false
-        restartFile                     = false
+        restartFile                     = true
         initRestart                     = false
         restartFlowOnly                 = false
-        scratchSize                     = 100.0
+        scratchSize                     = 400.0
 #----------------APPLICATION ENVIRONMENT------------
-        outputDir                       = "./out_flow/"
+        outputDir                       = "./out/"
         geometryInputFileName           = "geometry.toml"
         gridInputFileName               = "grid.Netcdf"
-        restartDir                      = "./out_flow/"
+        restartDir                      = "./out/"
 #--------------- SOLVER SETTINGS ----------------
         noSolvers                       = 2
         multiSolverGrid                 = true
@@ -34,44 +34,44 @@
         
 #------------- FLOW INITIALIZATION --------------
         initMethod                      = "LB_FROM_ZERO_INIT"
-
 #--------------- SOLUTION PROPERTIES ----------------
-        timeSteps                       =  200000
-        solutionInterval                =  25000
-        restartInterval                 =  50000
+        timeSteps                       =  1770490
+        solutionInterval                =  5000
+        restartInterval                 =  100000
         residualInterval                =  100000
-        restartTimeStep                 =  0
+        restartTimeStep                 =  1400000
 
 #--------------- FLOW VARIABLES ------------------
-        Ma                              = 0.05
-        Re                              = 34.585
-        rho1                            = 1.00 
+        Ma                              = 0.05 #0.05
+        Re                              = 170.3655396
+        rho1                            = 0.98 #1.00 
         referenceLength                 = 1.0 # stl units. so [mm]
         multiBCTreatment                = "W-I-P"
+        alpha                           = 0.1290994675
 #------------ LPT SETTINGS ---------------------
         nonDimensionaliseLPT            = true
         viscosityLaw                    = "CONSTANT"
         ambientViscosity                = 1.0 
         particleDensity                 = 1000.0
 
-        Frm                             = [0.0, 0.0, -0.02403273685] ##  #gravitational acceleration acting on the particles
+        Frm                             = [0.0, 0.0, -0.001502751598] ##  #gravitational acceleration acting on the particles
 
         particleIdOutput                = true
-        particleInitializationMethod    = 3
+        particleInitializationMethod    = 3 #4 for vel
         particleMomentumCoupling        = false
         particleWallCollisions          = true
         cartesianWallCollisions         = false
         calcCutInfo                     = true
         particleCollisions              = 0
-        particleDrag                    = 2  #0 = no drag; 1 = linear Stokes drag; 2 = Schiller-Naumann correlation; 3 = Pinsky-Khain correlation
+        particleDrag                    = 2 #10  #0 = no drag; 1 = linear Stokes drag; 2 = Schiller-Naumann correlation; 3 = Pinsky-Khain correlation; 10 - my own model
         removeParticleVerbosity         = 2   #write particle output-file
         particleExchangeBufferSize      = 10000
 
         # outlet settings for particle removal
         outletConfigured                = true
-        outletPoint                     = [-0.0147355, 1.23576, 1.40737]                          
+        outletPoint                     = [-14.7355, 1235.76, 1407.37]                          
         outletNormal                    = [0.0, 0.0, 1.0]        
-        outletDistance                  = 1e-2
+        outletDistance                  = 1.0
 
         #Interpolation of LPT-Variables to LB-Solver
         particleInterpolationOrder      = 1
@@ -85,11 +85,11 @@
         postProcessingOps_0             = ["PP_POINT_SAMPLING_IN"]
         postprocessingOrder_0           = [0,1]
         pointDataFileName_0             = "point.dat"
-        pointDataSampleInterval         = 10
+        pointDataSampleInterval         = 1
         pointDataWriteInterval          = 10000
 #--------------- GRID AND REFINEMENT PROPERTIES --------------
         maxNoCells                      = 1000000 
-        maxRfnmntLvl                    = 11
+        maxRfnmntLvl                    = 12
         noHaloLayers                    = 2
         initVelocityMethod              = "fromSTL"
         bndNormalMethod                 = "fromSTL"

@@ -3,30 +3,39 @@
 # -------------- APPLICATION SETTINGS  --------------
         flowSolver                      = false   
         gridGenerator                   = true    
-        scratchSize                     = 30.0
+        scratchSize                     = 300.0
         dynamicLoadBalancing            = false
 # -------------- APPLICATION ENVIRONMENT  --------------
-        outputDir                       = "./out_flow/"       
+        outputDir                       = "./out/"       
         geometryInputFileName           = "geometry.toml"
 	gridOutputFileName              = "grid.Netcdf"  
         gridInputFileName               = "grid.Netcdf"  
 # -------------- SPATIAL DISCRETIZATION --------------
         spaceDimensions                 = 3              
 # -------------- GRID AND REFINEMENT PROPERTIES --------------  
-        maxNoCells                      = 100000000     #Maximale Zellanzahl
-        minLevel                        = 11             #Initielles Verfeinerungslevel
-        maxUniformRefinementLevel       = 11            #Maximales Verfeinerungslevel für die Geo.
-        maxRfnmntLvl                    = 11            #Maximales Verfeinerungslevel
-        maxBoundaryRfnLvl               = 11            #Maximales Verfeinerungslevel des Randes
-        reductionFactor                 = 1.724137931        #Zur Vergrößerung der Initialgitters
+        maxNoCells                      = 150000000     #Maximale Zellanzahl
+        minLevel                        = 9 #9            #Initielles Verfeinerungslevel
+        maxUniformRefinementLevel       = 9 #9          #Maximales Verfeinerungslevel für die Geo.
+        maxRfnmntLvl                    = 12            #Maximales Verfeinerungslevel
+        maxBoundaryRfnLvl               = 12           #Maximales Verfeinerungslevel des Randes
+        reductionFactor                 = 1.3653333 #1.365333333        #Zur Vergrößerung der Initialgitters
 # -------------- REFINEMENT OF THE NASAL CAVITY --------------
         # Set the special refinement type: 0 deactivated, 1 patch only, 2 boundary only, 3 both.
-        localRfnMethod                  = 0                             
+        localRfnMethod                  = 3
         
         localBndRfnMethod               = 2
-
-        localRfnBoundaryIds             = [0,1,2,3,4]
-        localRfnLvlDiff                 = [0,0,0,0,0]  
-        smoothDistance                  = [15,15,15,25,15] 
+        
+        localRfnLvlDiff                 = [2,1,0]  
+        ###localBndRfnMinLvlDiff        = [0,0]  
+        smoothDistance                  = [5,5,25] 
         localMinBoundaryThreshold       = 1
-        localBndRfnDistance             = [2.0,2.0,2.0,2.0,2.0]  
+        localBndRfnDistance             = [10.0,5.0,15.0] #10.0, 5.0, 5.0  
+        
+        localRfnBoundaryIds             = [2,3,4] 
+        localRfnLvlMethods              = "B-B-B" #nose is at 0,1100,1590
+
+                                        #[-200.0,  890.0 ,1380.0,200.0, 1280.0, 1610.0,
+                                        #-120.0,  970.0 ,1460.0,120.0, 1200.0, 1690.0]
+        localRfnLevelProperties         =   [-70.0, 1020.0 ,1510.0, 70.0, 1150.0, 1640.0,
+                                            -40.0, 1050.0, 1540.0, 40.0,  1125.0, 1610.0, 
+                                           -20.0, 1070.0, 1560.0, 20.0,  1125.0, 1600.0]

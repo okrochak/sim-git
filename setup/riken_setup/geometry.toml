@@ -1,21 +1,36 @@
-noSegments = 5
-inOutSegmentsIds = [0,1,2]
+noSegments = 10
+inOutSegmentsIds = [0,1,5,6,7,8,9]
 
-filename.0 = "stl/nostril_1.stl"
-filename.1 = "stl/nostril_2.stl" 
-filename.2 = "stl/outlet.stl"
-filename.3 = "stl/mouth.stl"
+filename.0 = "stl/front.stl"
+filename.1 = "stl/outlet.stl"
+filename.2 = "stl/body.stl"
+filename.3 = "stl/face.stl"
 filename.4 = "stl/breathing_tract.stl"
+filename.5 = "stl/back.stl"
+filename.6 = "stl/left.stl"
+filename.7 = "stl/right.stl"
+filename.8 = "stl/bottom.stl"
+filename.9 = "stl/top.stl"
 
 
 "body_segments.inlet1"  = 0
-"body_segments.inlet2"  = 1
-"body_segments.outlet1" = 2
-"body_segments.wall1"   = 3
-"body_segments.wall2"   = 4
+"body_segments.outlet1" = 1
+"body_segments.wall1"   = 2
+"body_segments.wall2"   = 3
+"body_segments.wall3"   = 4
+"body_segments.inlet2"   = 5
+"body_segments.inlet3"   = 6
+"body_segments.inlet4"   = 7
+"body_segments.inlet5"   = 8
+"body_segments.inlet6"   = 9
 
-BC.0  = 1000 #1080
-BC.1  = 1000 #1080
-BC.2  = 4000
-BC.3  = 2000
-BC.4  = 2000
+BC.0 = 3000 #4070
+BC.1 = 1080
+BC.2 = 2000
+BC.3 = 2000
+BC.4 = 2000
+BC.5 = 3000 #4070
+BC.6 = 3000
+BC.7 = 3000
+BC.8 = 3000
+BC.9 = 3000
