@@ -3,7 +3,7 @@
 #-----------------APPLICATION SETTINGS--------------
         flowSolver                      = true
         gridGenerator                   = false
-        restartFile                     = true
+        restartFile                     = false
         initRestart                     = false
         restartFlowOnly                 = false
         scratchSize                     = 400.0
@@ -35,7 +35,7 @@
 #------------- FLOW INITIALIZATION --------------
         initMethod                      = "LB_FROM_ZERO_INIT"
 #--------------- SOLUTION PROPERTIES ----------------
-        timeSteps                       =  1770490
+        timeSteps                       =  2000000
         solutionInterval                =  5000
         restartInterval                 =  100000
         residualInterval                =  100000

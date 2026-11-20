@@ -35,11 +35,11 @@
 #------------- FLOW INITIALIZATION --------------
         initMethod                      = "LB_FROM_ZERO_INIT"
 #--------------- SOLUTION PROPERTIES ----------------
-        timeSteps                       =  300000
+        timeSteps                       =  1700000
         solutionInterval                =  1000
         restartInterval                 =  100000
         residualInterval                =  100000
-        restartTimeStep                 =  3280000
+        restartTimeStep                 =  2000000
 
 #--------------- FLOW VARIABLES ------------------
         Ma                              = 0.05 #0.05
